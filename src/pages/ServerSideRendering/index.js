@@ -1,26 +1,32 @@
 // server-side-rendering/index.js
 import React from 'react';
-import axios from 'axios';
 
 const ServerSideRenderingPage = ({ posts }) => {
   return (
     <div>
       <h1>Server-Side Rendering Example</h1>
       <h2>Posts:</h2>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
+      {posts.length > 0 ? (
+        <ul>
+          {posts.map(post => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
 
 export async function getServerSideProps() {
   try {
+    // Simulate loading delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
     // Fetch posts from JSONPlaceholder API
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    const posts = response.data;
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const posts = await response.json();
 
     return {
       props: {

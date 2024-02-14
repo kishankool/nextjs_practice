@@ -1,35 +1,46 @@
-// client-side-rendering/index.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// server-side-rendering/index.js
+import React from 'react';
 
-const ClientSideRenderingPage = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    // Fetch posts from JSONPlaceholder API on component mount
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        setPosts(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
+const ServerSideRenderingPage = ({ posts }) => {
   return (
     <div>
-      <h1>Client-Side Rendering Example</h1>
+      <h1>Server-Side Rendering Example</h1>
       <h2>Posts:</h2>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
+      {posts.length > 0 ? (
+        <ul>
+          {posts.map(post => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
 
-export default ClientSideRenderingPage;
+export async function getServerSideProps() {
+  try {
+    // Simulate loading delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Fetch posts from JSONPlaceholder API
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const posts = await response.json();
+
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
+}
+
+export default ServerSideRenderingPage;
