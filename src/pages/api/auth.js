@@ -18,4 +18,8 @@ export default NextAuth({
       return session;
     },
   },
+  pages: {
+    signIn: '/auth/login', // Set the login page URL
+    signOut: '/auth/logout', // Set the logout page URL
+  },
 });
