@@ -1,0 +1,1 @@
+Next.js allows you to create API routes within your application, making it easy to build backend functionality directly alongside your frontend code.

@@ -1,0 +1,1 @@
+ Next.js automatically splits your code into smaller chunks, loading only the necessary JavaScript for each page. This helps to reduce initial page load times.

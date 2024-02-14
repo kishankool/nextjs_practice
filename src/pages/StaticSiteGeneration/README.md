@@ -1,0 +1,1 @@
+Next.js supports generating static websites at build time, pre-rendering pages as static HTML files. This can lead to faster page loads as the content is served statically from a CDN (Content Delivery Network).

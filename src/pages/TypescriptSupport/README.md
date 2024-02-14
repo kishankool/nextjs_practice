@@ -1,0 +1,1 @@
+Next.js has built-in TypeScript support, allowing you to write type-safe code and catch errors early in development.

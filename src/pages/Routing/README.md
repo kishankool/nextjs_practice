@@ -1,0 +1,1 @@
+Next.js simplifies routing by allowing you to create dynamic routes easily. It follows a file-based routing system where each page corresponds to a file in the pages directory.

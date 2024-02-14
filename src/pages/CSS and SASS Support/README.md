@@ -1,0 +1,1 @@
+Next.js provides built-in support for styling your components using CSS or Sass. It also supports CSS Modules for scoped styling.
