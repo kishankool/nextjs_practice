@@ -11,7 +11,7 @@ const ProtectedPage = () => {
   }
 
   if (!session) {
-    router.push('/login'); // Redirect to login page if user is not authenticated
+    router.push('auth/login'); // Redirect to login page if user is not authenticated
     return null;
   }
 
